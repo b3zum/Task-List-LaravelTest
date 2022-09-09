@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,28 +22,51 @@
         }
         .fa-btn {
             margin-right: 6px;
+
         }
+
     </style>
 </head>
+
 <body id="app-layout">
+
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
+            <div style="position:absolute; right: 100px;">
+                <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+                    <div class="text-sm text-gray-700 dark:text-gray-500 underline">
 
-            <!-- Branding Image -->
+
+            <button type='button' id='viewSubjectRating' class="button_position">
+
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-dropdown-link :href="route('logout')"
+
+                                 onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                    {{ __('Log Out') }}
+
+                </x-dropdown-link>
+            </form>
+            </button>
+            </div>
+            </div>
+            </div>
+
+    <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
                 Task List
             </a>
         </div>
 
-    </div>
+
+
 </nav>
 
 @yield('content')
 
-<!-- JavaScripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-{{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
-</body>
-</html>
+
+
