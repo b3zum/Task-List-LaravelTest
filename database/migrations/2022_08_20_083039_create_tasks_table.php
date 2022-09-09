@@ -16,7 +16,11 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            /*$table->unsignedBigInteger('user_id');
+            $table->foreign('user_id', 'b3zum')->references('id')->on('users')->onDelete('cascade');*/
             $table->timestamps();
+            $table->integer('user_id')->unsigned()->index();
+
         });
     }
 

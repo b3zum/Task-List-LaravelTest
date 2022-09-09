@@ -1,7 +1,8 @@
-
-@extends('layouts.app')
+@extends('task.app')
 
 @section('content')
+
+
     <div class="container">
         <div class="col-sm-offset-2 col-sm-8">
             <div class="panel panel-default">
@@ -12,6 +13,7 @@
                 <div class="panel-body">
                     <!-- Display Validation Errors -->
                     @include('common.errors')
+
 
                     <!-- New Task Form -->
                     <form action="{{ url('task')}}" method="POST" class="form-horizontal">
@@ -56,12 +58,14 @@
                                 <tr>
                                     <td class="table-text"><div>{{ $task->name }}</div></td>
 
+
                                     <!-- Task Delete Button -->
                                     <td>
                                         <input type="hidden" name="_method" value="DELETE">
                                         <form action="{{ url('task/'.$task->id) }}" method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
+
 
 
 
@@ -80,3 +84,4 @@
         </div>
     </div>
 @endsection
+

@@ -4,17 +4,27 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Repositories\TaskRepository;
 
 class TaskController extends Controller
 {
-   public function index()
-   {
-       $tasks = Task::orderBy('created_at', 'asc')->get();
+    protected $tasks;
 
+    public function __construct(TaskRepository $tasks)
+    {
+        $this->middleware('auth');
+
+        $this->tasks = $tasks;
+    }
+
+   public function index(Request $request)
+   {
        return view('tasks', [
-           'tasks' => $tasks
+           'tasks' => $this->tasks->forUser($request->user()),
        ]);
+
    }
+
 
   public function store(Request $request)
    {
@@ -22,24 +32,17 @@ class TaskController extends Controller
            'name' => 'required|max:255',
        ]);
 
-       if ($validator->fails()) {
-           return redirect('tasks')
-               ->withInput()
-               ->withErrors($validator);
-       }
-
-       $task = new Task;
-       $task->name = $request->name;
-       $task->save();
-
+       $request->user()->tasks()->create([
+           'name' => $request->name,
+       ]);
        return redirect('tasks');
-
    }
 
 
 
-   public function destroy(Task $task)
+   public function destroy(Request $request, Task $task)
    {
+       $this->authorize('destroy', $task);
 
        $task->delete();
 
