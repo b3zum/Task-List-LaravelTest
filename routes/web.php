@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
-use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,17 +19,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::controller(TaskController::class)->middleware(['auth'])->name('tasks.')->prefix('tasks')->group(function () {
+    Route::get('', 'index')->name('index');
+    Route::post('', 'store')->name('store');
+    Route::delete('/{task}', 'destroy')->name('destroy');
+});
 
+Route::controller(ProfileController::class)->middleware(['auth'])->name('profile.')->prefix('profile/edit')->group(function () {
+    Route::get('', 'getEdit')->name('edit');
+    Route::post('', 'postEdit')->name('edit');
+});
 
-Route::get('tasks', [TaskController::class, 'index'])->name('tasks');
-Route::post('task', [TaskController::class, 'store'])->name('post.task');
-Route::delete('task/{task}', [TaskController::class, 'destroy'])->name('task.destroy');
-
-require __DIR__.'/auth.php';
-
-
-
-
+require __DIR__ . '/auth.php';

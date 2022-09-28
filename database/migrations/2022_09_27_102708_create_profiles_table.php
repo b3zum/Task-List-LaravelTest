@@ -11,15 +11,13 @@ return new class extends Migration
      *
      * @return void
      */
-
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->timestamps();
+            $table->string('image')->nullable();
             $table->integer('user_id')->unsigned()->index();
-            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('profiles');
     }
 };

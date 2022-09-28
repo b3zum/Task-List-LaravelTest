@@ -10,12 +10,6 @@ class TaskPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-
     public function destroy(User $user, Task $task)
     {
         return $user->id === $task->user_id;
