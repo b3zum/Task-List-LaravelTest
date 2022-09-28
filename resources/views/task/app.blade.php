@@ -56,8 +56,34 @@
             </div>
             </div>
 
+            <nav class="navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <div style="position:absolute; right: 100px;">
+                            <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+                                <div class="text-sm text-gray-700 dark:text-gray-500 underline">
+
+
+                                    <button type='button' id='viewSubjectRating' class="button_position">
+
+                                        <form method="GET" action="{{ route('profile.edit') }}">
+                                            @csrf
+
+                                            <x-dropdown-link :href="route('profile.edit')"
+
+                                                             onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                                {{ __('Редактировать профиль') }}
+
+                                            </x-dropdown-link>
+                                        </form>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
     <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
+
                 Task List
             </a>
         </div>

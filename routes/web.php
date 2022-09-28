@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
+use App\Http\Controllers\MailController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +30,13 @@ Route::get('tasks', [TaskController::class, 'index'])->name('tasks');
 Route::post('task', [TaskController::class, 'store'])->name('post.task');
 Route::delete('task/{task}', [TaskController::class, 'destroy'])->name('task.destroy');
 
-require __DIR__.'/auth.php';
+
+Route::get('profile/edit', [ProfileController::class, 'getEdit'])->middleware(['auth'])->name('profile.edit');
+Route::post('profile/edit', [ProfileController::class, 'postEdit'])->middleware(['auth'])->name('profile.edit');
+
+require __DIR__ . '/auth.php';
+
+
 
 
 

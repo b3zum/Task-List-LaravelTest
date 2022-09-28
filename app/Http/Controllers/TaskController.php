@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Repositories\TaskRepository;
+
 
 class TaskController extends Controller
 {
@@ -19,6 +21,7 @@ class TaskController extends Controller
 
    public function index(Request $request)
    {
+
        return view('tasks', [
            'tasks' => $this->tasks->forUser($request->user()),
        ]);
@@ -28,6 +31,9 @@ class TaskController extends Controller
 
   public function store(Request $request)
    {
+
+
+
        $validator = Validator::make($request->all(), [
            'name' => 'required|max:255',
        ]);
@@ -35,8 +41,11 @@ class TaskController extends Controller
        $request->user()->tasks()->create([
            'name' => $request->name,
        ]);
+
        return redirect('tasks');
+
    }
+
 
 
 

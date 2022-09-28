@@ -11,20 +11,11 @@ return new class extends Migration
      *
      * @return void
      */
-
     public function up()
     {
-
-
-
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            /*$table->unsignedBigInteger('user_id');
-            $table->foreign('user_id', 'b3zum')->references('id')->on('users')->onDelete('cascade');*/
             $table->timestamps();
-            $table->integer('user_id')->unsigned()->index();
-            $table->softDeletes();
 
         });
     }
@@ -36,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('profiles');
     }
 };

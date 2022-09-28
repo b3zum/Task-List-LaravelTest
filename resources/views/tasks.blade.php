@@ -16,8 +16,10 @@
 
 
                     <!-- New Task Form -->
-                    <form action="{{ url('task')}}" method="POST" class="form-horizontal">
+                    <form action="{{ url('task')}}" method="POST" class="form-horizontal" enctype="multipart/form-data">
                         {{ csrf_field() }}
+
+
 
                         <!-- Task Name -->
                         <div class="form-group">
@@ -25,6 +27,13 @@
 
                             <div class="col-sm-6">
                                 <input type="text" name="name" id="task-name" class="form-control" value="{{ old('task') }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="image" class="col-sm-3 control-label">Загрузить файл</label>
+
+                            <div class="col-sm-6">
+                                <input type="file" name="image" id="image" class="form-control">
                             </div>
                         </div>
 

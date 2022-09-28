@@ -9,7 +9,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class VerifyEmailController extends Controller
 {
-    /**
+    /**    {
+
      * Mark the authenticated user's email address as verified.
      *
      * @param  \Illuminate\Foundation\Auth\EmailVerificationRequest  $request
