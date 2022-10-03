@@ -30,4 +30,4 @@ Route::controller(ProfileController::class)->middleware(['auth'])->name('profile
     Route::post('', 'postEdit')->name('edit');
 });
 
-require __DIR__ . '/auth.php';
+require_once __DIR__ . '/auth.php';

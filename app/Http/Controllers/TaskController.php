@@ -33,6 +33,7 @@ class TaskController extends Controller
         $request->user()->tasks()->create([
             'name' => $request->name,
         ]);
+
         return redirect('tasks');
     }
 
@@ -40,6 +41,7 @@ class TaskController extends Controller
     {
         $this->authorize('destroy', $task);
         $task->delete();
+
         return redirect('tasks/');
     }
 }
